@@ -1,0 +1,7 @@
+/* 파일 호출 기준을 src로 두어서 상대경로가 필요하지 않도록 함 */
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}

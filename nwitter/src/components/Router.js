@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import Auth from "../routes/Auth";
-import Home from "../routes/Home";
+import Auth from "routes/Auth";
+import Home from "routes/Home";
 /* 
   BrowserRouter vs HashRouter
   1. BrowserRouter
@@ -22,8 +22,7 @@ import Home from "../routes/Home";
   -> <Route component={PageNotFound} />와 같이 '/' path가 없는, 즉 에러가 났을 때의 경우에 해당 경우만 정확히 렌더링할 수 있다.
   
 */
-const AppRouter = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const AppRouter = ({ isLoggedIn }) => {
   return (
     <Router>
       <Switch>
