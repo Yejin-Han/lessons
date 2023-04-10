@@ -3,12 +3,12 @@ import { dbService } from "fbase";
 import {
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
 } from "firebase/firestore";
+import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -35,16 +35,36 @@ const Home = ({ userObj }) => {
   };
 
   useEffect(() => {
-    const q = query(collection(dbService, "nweets"));
+    const q = query(
+      collection(dbService, "nweets"),
+      orderBy("createdAt", "desc") //시간별 정렬
+    );
     onSnapshot(q, (snapshot) => {
       const nweetArr = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setNweets(nweetArr);
-      console.log(nweets);
     });
   }, []);
+
+  /*
+  getDocs를 활용한다면
+  const getNweets = async () = {
+    const q = query(
+      collection(dbService, "nweets"),
+      orderBy("createdAt", "desc") //시간별 정렬
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc => {
+      const nweetObj = {
+        ...doc.data(),
+        id: doc.id,
+      }
+      setNweets((prev) => [nweetObj, ...prev]);
+    });
+  };
+  */
 
   return (
     <div>
@@ -60,9 +80,11 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {nweets.map((nweet, idx) => (
-          <div key={idx}>
-            <h4>{nweet.text}</h4>
-          </div>
+          <Nweet
+            key={idx}
+            nweetObj={nweet}
+            isOwner={nweet.creatorID === userObj.uid}
+          />
         ))}
       </div>
     </div>
