@@ -25,15 +25,18 @@ import Profile from "routes/Profile";
   -> <Route component={PageNotFound} />와 같이 '/' path가 없는, 즉 에러가 났을 때의 경우에 해당 경우만 정확히 렌더링할 수 있다.
   ** react-router-dom v6에서 Routes로 바뀜!!
 */
-const AppRouter = ({ isLoggedIn, userObj }) => {
+const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
   return (
     <>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
           <>
             <Route path="/" element={<Home userObj={userObj} />} />
-            <Route path="/profile" element={<Profile userObj={userObj} />} />
+            <Route
+              path="/profile"
+              element={<Profile userObj={userObj} refreshUser={refreshUser} />}
+            />
           </>
         ) : (
           <Route path="/" element={<Auth />} />
