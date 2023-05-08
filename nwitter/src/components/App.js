@@ -48,7 +48,9 @@ const App = () => {
       ) : (
         "Initializing..."
       )}
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
+      <footer className="footer">
+        &copy; {new Date().getFullYear()} Nwitter
+      </footer>
     </>
   );
 };
