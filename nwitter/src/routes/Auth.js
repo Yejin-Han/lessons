@@ -43,7 +43,7 @@ const Auth = () => {
         />
         <AuthForm />
         {/* social login 부분도 따로 components로 빼도 될 것이다. */}
-        <div classNmae="authBtns">
+        <div className="authBtns">
           <button name="google" onClick={onSocialClick} className="authBtn">
             Continue with Google <FontAwesomeIcon icon={faGoogle} />
           </button>

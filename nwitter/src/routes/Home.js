@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { authService, dbService } from "fbase";
 import Nweet from "components/Nweet";
-import { dbService } from "fbase";
 import NweetFactory from "components/NweetFactory";
 
 const Home = ({ userObj }) => {
@@ -12,12 +13,18 @@ const Home = ({ userObj }) => {
       collection(dbService, "nweets"),
       orderBy("createdAt", "desc") //시간별 정렬
     );
-    onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const nweetArr = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setNweets(nweetArr);
+    });
+
+    onAuthStateChanged(authService, (user) => {
+      if (user == null) {
+        unsubscribe();
+      }
     });
   }, []);
 
