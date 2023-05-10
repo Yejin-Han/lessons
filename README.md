@@ -3,4 +3,4 @@
 
 
 ## 강의
-- [트위터 클론코딩](https://github.com/Yejin-Han/lessons/tree/main/nwitter)
+- [트위터 클론코딩](https://yejin-han.github.io/lessons/nwitter/)
