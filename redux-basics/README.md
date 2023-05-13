@@ -25,3 +25,10 @@
 2. 컴포넌트 : 저장소를 구독하여 필요한 데이터를 받음
 3. 리듀서 함수 : 저장소 데이터 업데이트, 액션을 받아 새로운 상태를 저장소로 전달, 저장소의 기존 상태 대체
 4. 액션 : 컴포넌트가 dispatch하는 특정한 행동, 이를 리듀서로 전달하여 실행
+
+<br>
+<br>
+
+#### Reducer
+
+Inputs : {Old state + Dispatched Action} => Output : {New State Object} (Pure Function)
