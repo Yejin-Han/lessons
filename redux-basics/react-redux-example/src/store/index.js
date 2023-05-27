@@ -1,40 +1,33 @@
-import { legacy_createStore as createStore } from "redux"; //import { createStore } from "redux" -> redux toolkit을 쓰도록 권유;
-
-// Counter에서 type 오타나면 인식 못하므로 아예 상수로 만듦
-export const INCREMENT = "increment";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initState = { counter: 0, showCounter: true };
 
-const counterReducer = (state = initState, action) => {
-  // reducer에서 반환하는 객체는 기존 state와 병합되지 않고 기존 state를 덮어쓴다.
-  // 기존 state는 절대 변경해서는 안 되며 새로운 state snopshot을 반환하여 재정의해야 함.
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: initState,
+  reducers: {
+    increment(state) {
+      //toolkit 사용하면 자동으로 원래 상태를 복제한 새로운 상태 객체를 생성하고 우리가 변경한 상태는 변하지 않도록 오버라이드 함.
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    increase(state, action) {
+      state.counter = state.counter + action.payload;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
+    },
+  },
+});
 
-  switch (action.type) {
-    case "increment":
-      return {
-        counter: state.counter + 1,
-        showCounter: state.showCounter,
-      };
-    case "increase":
-      return {
-        counter: state.counter + action.amount, //extra payload 'amount'
-        showCounter: state.showCounter,
-      };
-    case "decrement":
-      return {
-        counter: state.counter - 1,
-        showCounter: state.showCounter,
-      };
-    case "toggle":
-      return {
-        counter: state.counter,
-        showCounter: !state.showCounter,
-      };
-  }
+//configureStore은 여러 개의 리듀서를 하나의 리듀서로 쉽게 합칠 수 있음.
+const store = configureStore({
+  reducer: { counter: counterSlice.reducer },
+  // reducer가 여러개라면 객체식으로 reducer: { counter: counterSlice.reducer, ... },
+});
 
-  return state;
-};
-
-const store = createStore(counterReducer);
+export const counterActions = counterSlice.actions;
 
 export default store;
