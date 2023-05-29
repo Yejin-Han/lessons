@@ -4,3 +4,4 @@
 
 ## 강의
 - [트위터 클론코딩](https://yejin-han.github.io/lessons/nwitter/)
+- [react-redux-example](https://yejin-han.github.io/lessons/redux-basics/)
