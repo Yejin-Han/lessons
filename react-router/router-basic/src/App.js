@@ -15,6 +15,8 @@ const routerDefinitions = createRouterFromElements(
     <Route path="/products" element={<ProductsPage />} />
   </Route>
 );
+
+const router = createBrowserRouter(routeDefinitions);
 */
 
 function App() {
