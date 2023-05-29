@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lessons/redux-basics/react-redux-example/static/css/main.0986ccf0.css",
+    "main.js": "/lessons/redux-basics/react-redux-example/static/js/main.45a4d16f.js",
+    "index.html": "/lessons/redux-basics/react-redux-example/index.html",
+    "main.0986ccf0.css.map": "/lessons/redux-basics/react-redux-example/static/css/main.0986ccf0.css.map",
+    "main.45a4d16f.js.map": "/lessons/redux-basics/react-redux-example/static/js/main.45a4d16f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0986ccf0.css",
+    "static/js/main.45a4d16f.js"
+  ]
+}
